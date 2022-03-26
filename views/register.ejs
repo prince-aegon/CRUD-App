@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Register</title>
+</head>
+
+<body style="margin:5px 10px 15px 10px; padding:15px;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Article Store</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <%if(user) {%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/articles/add">Add</a>
+                    </li>
+                    <%}%>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Change
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <!-- <a class="dropdown-item" href="#">Change</a> -->
+                                <a class="dropdown-item" href="/articles/update">Update</a>
+                                <!-- <div class="dropdown-divider"></div> -->
+                                <a class="dropdown-item" href="/articles/delete">Delete</a>
+                            </div>
+                        </li>
+                        <!-- <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li> -->
+            </ul>
+            <% if(user) { %>
+                <ul class="navbar-nav my-1 my-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/users/logout">Logout</a>
+                    </li>
+                    <%} else {%>
+                        <ul class="navbar-nav my-2 my-lg-0">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/users/register">Register</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/users/login">Login</a>
+                            </li>
+                        </ul>
+                        <%}%>
+        </div>
+    </nav>
+    <%- messages('message', locals) %>
+        <% if(errors!=null) {%>
+            <% console.log(errors.errors)%>
+
+                <% for(i=0;i<errors.errors.length;i++) { %>
+                    <div class="alert alert-danger">
+                        <%= (errors.errors[i].msg)%>
+                    </div>
+                    <% } %>
+                        <% } %>
+                            <h1 style="margin:0 0 50px 0;">
+                                Register
+                            </h1>
+                            <form action="/users/register" method="POST">
+                                <div class="form-group row">
+                                    <label for="Name" class="col-sm-2 col-form-label">Name:</label>
+                                    <div class="col-sm-3">
+                                        <input name="name" type="text" class="form-control" id="Name"
+                                            placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                                    <div class="col-sm-3">
+                                        <input name="email" type="email" class="form-control" id="email"
+                                            placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Username" class="col-sm-2 col-form-label">Username:</label>
+                                    <div class="col-sm-3">
+                                        <input name="username" type="text" class="form-control" id="Username"
+                                            placeholder="Username" row="5">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Password" class="col-sm-2 col-form-label">Password:</label>
+                                    <div class="col-sm-3">
+                                        <input name="password" type="Password" class="form-control" id="Password"
+                                            placeholder="Password" row="5">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Confirm Password" class="col-sm-2 col-form-label">Confirm:</label>
+                                    <div class="col-sm-3">
+                                        <input name="confirm" type="Password" class="form-control" id="Confirm Password"
+                                            placeholder="Confirm Password" row="5">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                            <br>
+                            <hr>
+                            <footer>
+                                <p>© 2022 IIT Mandi</p>
+                            </footer>
+                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                                crossorigin="anonymous"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+                                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                                crossorigin="anonymous"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+                                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                                crossorigin="anonymous"></script>
+</body>
+
+</html>
